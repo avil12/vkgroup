@@ -1,0 +1,830 @@
+/*your custom css goes here*/ 
+
+.container-xl{
+    width: 88% !important;
+    max-width: 1920px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: auto;
+}
+
+@media only screen and (max-width: 1500px){
+    .container-xl{
+    width: 100% !important;
+    max-width: 1422px !important;
+
+}}
+
+@media only screen and (max-width: 768px){
+    .container-xl{
+    width: 100%;
+    max-width: 100%;
+
+}}
+
+
+
+
+
+.logo-bar-area{
+	background-color: #1191d0;
+}
+
+.dsk{
+	display: block;
+}
+
+.mob{
+	display: none;
+}
+
+/*.list-inline-item a{
+           padding: 3px 3px;
+            text-decoration: none;
+            color: white;
+            font-weight: 400;
+}*/
+
+/* ----------- Megadropdownmenu --------------------- */
+#dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+#dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 7px;
+  background-color: inherit;
+  font: inherit;
+  margin: 0;
+  font-weight: 600;
+  position: inherit;
+  display: block;
+  font-size: 14px;
+}
+
+.navbar a:hover, #dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  width: 100%;
+  left: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+
+
+.dropdown-content .header {
+  background: red;
+  padding: 16px;
+  color: white;
+}
+
+#dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 10.33%;
+    padding: 20px;
+    background-color: #fff;
+    height: auto;
+}
+
+.column a {
+  float: none;
+  color: black;
+  padding: 2px 0px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.column a:hover {
+  background-color: #ddd;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+.column h3 {
+    font-size: 12px;
+    color: #1191d0;
+    font-weight: 600;
+    text-align: left;
+}
+
+.dropdown-content .container {
+    display: block;
+    max-width: 1700px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dropdown-content .column a{
+  color: #666;
+  font-size: 12px;
+}
+
+/* ------------------------------------------ */
+
+.menuheaderbar{
+  background-color: #01273a;
+}
+
+/* ----------------  Slider Section -------------------------- */
+
+.banner {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-size: 1rem;
+  overflow: hidden;
+}
+
+.slider-section img {
+  height: 520px;
+  object-fit: cover;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+@media (min-width: 1600px){
+.pg-xxl-hide > .swiper-pagination {
+  display: none;
+}
+}
+
+.pg-inner .swiper-pagination {
+  position: absolute;
+  bottom: 4.5rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.swiper-pagination {
+  position: static;
+  margin-top: 1.5rem;
+}
+
+ @media (min-width: 1600px){
+.nav-xxl-show > .swiper-button-prev, .nav-xxl-show > .swiper-button-next {
+  display: block;
+}
+
+}
+
+.swiper-theme .swiper-button-next {
+  right: -40px;
+}
+
+.swiper-theme .swiper-button-prev, .swiper-theme .swiper-button-next {
+  margin: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #1191d0;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  padding: 0;
+  z-index: 99;
+  border: none;
+  background-color: transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.swiper-button-next::before {
+  content: "";
+}
+
+.swiper-button-next::before, .swiper-button-prev::before {
+  font-family: "Wolmart";
+}
+
+.swiper-theme .swiper-button-prev, .swiper-theme .swiper-button-next {
+  font-size: 20px;
+  font-weight: 400;
+  color: #1191d0;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+  content: "";
+}
+
+ @media (min-width: 1600px){
+.nav-xxl-show > .swiper-button-prev, .nav-xxl-show > .swiper-button-next {
+  display: block;
+}
+}
+
+.swiper-theme .swiper-button-prev {
+  left: -40px;
+}
+
+figure {
+  margin: 0;
+}
+
+.banner figure img {
+  display: block;
+  width: 100%;
+}
+
+.slider-section img {
+  height: 520px;
+  object-fit: cover;
+}
+.br-sm {
+  border-radius: 0.5rem !important;
+  overflow: hidden !important;
+}
+
+
+.slider-section .gutter-sm{
+  margin-left: -5px;
+    margin-right: -5px;
+}
+
+.intro-banner-wrapper .gutter-sm{
+  margin-left: -5px;
+    margin-right: -5px;
+}
+
+.intro-banner-wrapper .col-lg-5{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.gutter-sm > * {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.features-section {
+  padding: 20px 0px;
+  background: #f2f2f2;
+}
+
+.feat-wrap {
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.feat-wrap h4 {
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #333;
+  letter-spacing: -0.05px;
+  margin: 0 0 0rem;
+}
+
+.feat-wrap h4 i {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+[class^="w-icon-"], [class*=" w-icon-"] {
+  font-family: "wolmart" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.w-icon-gift2::before {
+  content: "";
+}
+
+.features-section .container{
+  max-width: 1470px;
+}
+
+.prodname{
+  font-size: 14px;
+  text-align: left !important;
+}
+
+/*------------------------------------------*/
+
+.featuredcon{
+  padding: 20px 0px 40px;
+}
+
+.featuredcss h3{
+    text-align: center;
+}
+
+.featuredcss h3 span{
+    font-size: 35px;
+}
+
+.latestproducts{
+  padding: 40px 0px 0px;
+}
+
+.latestproducts h3{
+   text-align: center;
+}
+
+.latestproducts h3 span{
+     font-size: 35px;
+}
+
+.brandsection{
+  padding: 20px 0px 40px;
+}
+
+.footerlogo a img{
+  max-width: 246px;
+}
+
+.footdescrip span{
+  color: #fff !important;
+  font-size: 16px !important;
+  letter-spacing: 0px;
+  font-family: revert !important;
+}
+
+.footcopyright span{
+  color: #d4d3d3 !important;
+}
+
+#scrollcol{
+  overflow-y: scroll;
+}
+
+#topbarmenu{
+padding-right: 200px;
+}
+
+#searchmenu{
+  padding-right:80px;
+}
+
+#whitelisticon{
+  margin-left: 36px;
+}
+
+.dmopMx {
+    position: relative;
+    width: 64px;
+    margin: auto;
+    display: none;
+}
+
+
+.flashdealpadding{
+  padding: 40px 0px 0px;
+}
+
+.flashheading{
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.flashicon {
+    width: 46px;
+    height: 46px;
+}
+
+.flashpara a {
+    font-size: 16px;
+    color: #5b5b5b;
+}
+
+#modaldiagcss{
+    max-width: 1039px;
+}
+
+#slidercss{
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#navarrow{
+    color: #fff;
+}
+
+.column h3 a{
+    font-size: 12px !important;
+    color: #1191d0 !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+}
+
+.headcss{
+    padding-bottom: 10px;
+}
+
+#hurrycss{
+    color: #d8232a;
+    display: flex; 
+    align-items: center; 
+    margin-left: 8px;    
+    font-size: 15px;
+    font-weight: 700;
+}
+
+#flashclock {
+    position: absolute;
+    top: 111px;
+    left: 75px;
+}
+
+#flashhome {
+    position: absolute;
+    top: 95px;
+    left: 0px;
+}
+
+.collectioncss h3{
+    text-align: center;
+}
+
+.collectioncss h3 span{
+    font-size: 35px;
+}
+
+.brandsection h3{
+    font-size: 35px;
+}
+
+.brandsection .d-flex a{
+    font-size: 16px;
+}
+
+#bestcss{
+    margin-bottom: 20px;
+}
+
+.carousel-box .aiz-card-box:hover::before{
+    border-top-color: red;
+    border-right-color: red;
+    transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+}
+
+.hov-animate-outline:hover::before {
+    border-top-color: var(--primary);
+    border-right-color: var(--primary);
+    transition: width 0.3s ease-out, height 0.3s ease-out 0.3s;
+}
+
+@media only screen and (max-width: 1660px) {
+
+#topbarmenu {
+    padding-right: 100px;
+}
+
+.search-input-box .form-control:focus {
+    border-width: 2px !important;
+    /* border-color: var(--primary) !important; */
+    background-color: #1191d0;
+    padding: 20px 100px 20px 0px;
+    transition: 1s;
+}
+
+#flashclock {
+    position: absolute;
+    top: 111px;
+    left: 43px;
+}
+
+}
+
+
+
+@media only screen and (max-width: 1440px) {
+
+#topbarmenu {
+    padding-right: 80px;
+}
+
+.search-input-box .form-control:focus {
+    border-width: 2px !important;
+    /* border-color: var(--primary) !important; */
+    background-color: #1191d0;
+    padding: 20px 75px 20px 0px;
+    transition: 1s;
+}
+
+.slider-section img {
+    height: 452px;
+    object-fit: cover;
+}
+
+.scrolllist{
+    overflow-y: scroll;
+    height: 100px;
+}
+
+#flashclock {
+    position: absolute;
+    top: 113px;
+    left: 36px;
+}
+
+
+
+}
+
+@media only screen and (max-width: 1366px) {
+
+#topbarmenu {
+    padding-right: 26px;
+}
+
+#searchmenu {
+    padding-right: 70px;
+}
+
+.search-input-box .form-control:focus {
+    border-width: 2px !important;
+    /* border-color: var(--primary) !important; */
+    background-color: #1191d0;
+    padding: 20px 49px 20px 0px;
+    transition: 1s;
+}
+
+.scrolllist{
+    overflow-y: scroll;
+    height: 100px;
+}
+
+}
+
+@media only screen and (max-width: 600px) {
+
+.dsk{
+	display: none;
+}
+
+.mob{
+	display: block
+}
+
+.slider-section img {
+    height: auto;
+    object-fit: cover;
+    width: 100%;
+}
+
+.feat-wrap h4 {
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.feat-wrap h4 i {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.featuredcss h3 span {
+    font-size: 23px;
+}
+
+.newproduct h3 span {
+    font-size: 23px;
+}
+
+.gutter-sm {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.offer-section .col:nth-child(1), .offer-section .col:nth-child(2) {
+    width: 100%;
+    flex-basis: unset;
+}
+
+.offer-section .col {
+    width: 100%;
+}
+
+.banner {
+    font-size: 0.8rem;
+}
+
+.banner-electronics .banner-price-info {
+    font-size: 16px;
+}
+
+.banner-electronics .banner-title {
+    font-size: 20.8px;
+    margin-bottom: 19px;
+}
+
+.bestsellingcss h3 span {
+    font-size: 23px;
+}
+
+.offer-section {
+    background-color: #fff;
+    padding: 20px 0px 10px;
+}
+
+.bestsellingcss {
+    background-color: #fff;
+    padding-bottom: 10px;
+}
+
+.icon-box-side {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.icon-box-side .icon-box-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+}
+
+.icon-box-side .icon-box-content {
+    text-align: center;
+}
+
+
+.dLavay {
+    display: flex;
+    margin: 53px 0px !important;
+    position: relative;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    max-height: 63px;
+}
+
+.dmopMx {
+    position: relative;
+    width: 64px;
+    margin: auto;
+    display: none;
+}
+
+#chat-bot-launcher-container.chat-bot-avatar-launcher, #chat-bot-launcher-container.chat-bot-launcher-notext {
+    bottom: 64px !important;
+}
+
+.footdescrip span {
+    color: #fff !important;
+    font-size: 13px !important;
+    letter-spacing: 0px;
+    font-family: revert !important;
+}
+
+.latestproducts h3 span {
+    font-size: 25px;
+}
+
+#topbarmenu img{
+  max-width: 200px !important;
+  height: 47px !important;
+}
+
+#connectus{
+  font-size: 14px !important;
+}
+
+.flashicon {
+    width: 52px;
+    height: 30px;
+}
+
+.flashheading {
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.flashpara a {
+    font-size: 14px;
+    color: #9b9b9b;
+}
+
+.flashdealpadding {
+    padding: 13px 0px 0px;
+}
+
+#slidercss{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#searchmenu {
+    padding-right: 0px;
+    background-color: #ffff;
+    flex-grow: 1;
+}
+
+#navflex{
+    flex-grow: 1;
+}
+
+.search-input-box > input {
+    overflow: hidden;
+    height: 40px;
+    padding: 0.375rem 0.75rem;
+    border-radius: 21px;
+    background-color: #1191d0;
+    border: none !important;
+    color: #fff !important;
+    border-bottom: none;
+}
+
+.search-input-box .form-control:focus {
+    border-width: 2px !important;
+    /* border-color: var(--primary) !important; */
+    background-color: #1191d0;
+    padding: 0.375rem 0.75rem;
+    transition: 1s;
+}
+
+#navarrow{
+    color: #000 !important;
+}
+
+#hurrycss{
+    color: #d8232a;
+    display: flex; 
+    align-items: center; 
+    margin-left: 8px;    
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#flashclock {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+}
+
+#flashhome {
+    position: absolute;
+    top: 75px;
+    left: 0px;
+}
+
+.collectioncss h3 span {
+    font-size: 25px;
+}
+
+.brandsection h3{
+    font-size: 25px;
+}
+
+.brandsection .d-flex a {
+    font-size: 15px;
+}
+
+#heightbox {
+    height: 261px;
+    border-right: 1px solid #000 !important;
+}
+
+}
