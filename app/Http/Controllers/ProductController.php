@@ -548,7 +548,12 @@ class ProductController extends Controller
 
     public function checkPincode(Request $request)
     {
-        dd(123);
+        if($request->isMethod('post')){
+            $data= $request->all();
+            echo "<pre>";
+            print_r($data); 
+            die;
+        }
     }   
 
 

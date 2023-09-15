@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\HomeController;
@@ -164,6 +165,9 @@ Route::post('/language', [LanguageController::class, 'changeLanguage'])->name('l
 
 // Currency Switch
 Route::post('/currency', [CurrencyController::class, 'changeCurrency'])->name('currency.change');
+
+
+
 
 
 
@@ -357,6 +361,10 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/addresses/destroy/{id}', 'destroy')->name('addresses.destroy');
         Route::get('/addresses/set_default/{id}', 'set_default')->name('addresses.set_default');
     });
+
+    Route::post('/frontend/product_details/check-pincode',[ProductController::class, 'checkPincode']);
+
+
 });
 
 Route::resource('shops', ShopController::class);
@@ -451,6 +459,8 @@ Route::controller(PageController::class)->group(function () {
 });
 
 //check delivery pincode
-Route::post('/check-pincode',[ProductController::class,'checkPincode']);
+
+
+
 
 

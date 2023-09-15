@@ -345,8 +345,6 @@
                 type="text"
                 class="form-control"
                 placeholder="Enter Pincode"
-                aria-label="Enter Pincode"
-                aria-describedby="button-addon1"
                 id="pincode"
                 name="pincode"
                 / style="margin-right: 20px;">
@@ -601,9 +599,3 @@
 
 </div>
 
-<script type="text/javascript">
-    $("#checkPincode").click(function(){
-    var pincode = $("#pincode").val();
-    alert(pincode);
-});
-</script>

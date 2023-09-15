@@ -2056,8 +2056,8 @@ $("#checkPincode").click(function(){
         },error:function(){
             alert("Error");
         }
-    }
-});
+    });
+ });
 
 
 
