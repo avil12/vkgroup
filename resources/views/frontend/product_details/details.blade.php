@@ -338,7 +338,7 @@
      </div>
  </div>
  <div class="col-sm-10 mt-2 mb-2">
-    <form method="POST" action="#">
+    <!-- <form method="POST" action="#"> -->
         <div class="d-flex ">
             <div class="input-group w-auto">
                 <input
@@ -348,23 +348,20 @@
                 id="pincode"
                 name="pincode"
                 / style="margin-right: 20px;">
-                <button class="btn btn-primary" id="checkPincode" type="button"  data-mdb-ripple-color="dark">
+                <button class="btn btn-primary" id="checkAvailability"  data-mdb-ripple-color="dark">
                     Apply
                 </button>
+               
             </div>
         </div>
-    </form> 
+    <!-- </form>  -->
+    <div id="result"></div>
 </div>
 
 
 </div>
 
 <hr style="margin-top:9px;margin-bottom: 8px;border: 1px solid #ededf2;">
-
-
-
-
-      
 
                 <!-- Color Options -->
                 @if (count(json_decode($detailedProduct->colors)) > 0)
@@ -599,3 +596,23 @@
 
 </div>
 
+<!-- <script>
+        $(document).ready(function () {
+            $('#pincodeForm').submit(function (event) {
+                event.preventDefault();
+                var pincode = $('#pincode').val();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/check-pincode',
+                    data: {pincode: pincode},
+                    success: function (response) {
+                        $('#result').html(response.message);
+                    },
+                    error: function (xhr, status, error) {
+                        $('#result').html('An error occurred while checking the pincode. Please try again later.');
+                    }
+                });
+            });
+        });
+</script> -->

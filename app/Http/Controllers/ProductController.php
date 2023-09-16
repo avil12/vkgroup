@@ -546,15 +546,26 @@ class ProductController extends Controller
     }
 
 
-    public function checkPincode(Request $request)
+     public function checkPincode(Request $request)
     {
-        if($request->isMethod('post')){
-            $data= $request->all();
-            echo "<pre>";
-            print_r($data); 
-            die;
-        }
-    }   
+        $pincode = $request->input('pincode');
 
+        // Perform your pincode availability check logic here
+        // For example, check the pincode against your database
+        $available = $this->checkPincodeAvailability($pincode);
 
+        return response()->json(['available' => $available]);
+    }
+
+    private function checkPincodeAvailability($pincode)
+    {
+        // Implement your pincode availability check logic here
+        // Return true if available, false if not
+        // For example, you can check against a database table
+        // Replace this with your actual logic
+
+        $availablePincode = '12345'; // Replace with an example available pincode
+
+        return $pincode === $availablePincode;
+    }
 }

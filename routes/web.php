@@ -49,6 +49,8 @@ use App\Http\Controllers\Payment\SslcommerzController;
 use App\Http\Controllers\Payment\MercadopagoController;
 use App\Http\Controllers\Payment\AuthorizenetController;
 
+use Illuminate\Support\Facades\Route;
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -131,6 +133,7 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/product/{slug}', 'product')->name('product');
     Route::post('/product/variant_price', 'variant_price')->name('products.variant_price');
+
     Route::get('/shop/{slug}', 'shop')->name('shop.visit');
     Route::get('/shop/{slug}/{type}', 'filter_shop')->name('shop.visit.type');
 
@@ -362,10 +365,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('/addresses/set_default/{id}', 'set_default')->name('addresses.set_default');
     });
 
-    Route::post('/frontend/product_details/check-pincode',[ProductController::class, 'checkPincode']);
+   
 
-
+   
 });
+
+
 
 Route::resource('shops', ShopController::class);
 
@@ -458,9 +463,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/{slug}', 'show_custom_page')->name('custom-pages.show_custom_page');
 });
 
-//check delivery pincode
 
-
-
+Route::post('/check-pincode', [ProductController::class, 'checkPincode'])->name('checkPincode');
 
 
