@@ -2043,6 +2043,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 var pincode = $('#pincode').val();
                 
                 $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': AIZ.data.csrf,
+                    },
                     type: 'POST',
                     url: '{{ route("checkPincode") }}',
                     data: {pincode: pincode},
