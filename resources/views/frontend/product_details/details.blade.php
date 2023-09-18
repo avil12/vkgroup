@@ -338,7 +338,7 @@
      </div>
  </div>
  <div class="col-sm-10 mt-2 mb-2">
-    <!-- <form method="POST" action="#"> -->
+   
         <div class="d-flex ">
             <div class="input-group w-auto">
                 <input
@@ -348,13 +348,12 @@
                 id="pincode"
                 name="pincode"
                 / style="margin-right: 20px;">
-                <button class="btn btn-primary" id="checkAvailability"  data-mdb-ripple-color="dark">
+                <button class="btn btn-primary" id="checkPincode"  data-mdb-ripple-color="dark">
                     Apply
                 </button>
                
             </div>
-        </div>
-    <!-- </form>  -->
+        </div> 
     <div id="result"></div>
 </div>
 
@@ -596,23 +595,43 @@
 
 </div>
 
-<!-- <script>
+<script>
         $(document).ready(function () {
-            $('#pincodeForm').submit(function (event) {
-                event.preventDefault();
-                var pincode = $('#pincode').val();
-                
-                $.ajax({
-                    type: 'POST',
-                    url: '/check-pincode',
-                    data: {pincode: pincode},
-                    success: function (response) {
-                        $('#result').html(response.message);
+            $("#checkPincode").click(function(event){
+    event.preventDefault(); // Prevent the form from submitting
+
+    var pincode = $("#pincode").val();
+    
+    if (pincode === "") {
+        $('#result').html('Please enter a delivery pincode');
+        return false;
+    }
+
+    // Check if pincode is a valid number
+    if (isNaN(pincode)) {
+         $('#result').html('Pincode should be a numeric value.');
+         return false;
+    }
+
+    $.ajax({
+        headers: {
+                        'X-CSRF-TOKEN': AIZ.data.csrf,
                     },
-                    error: function (xhr, status, error) {
+        type: 'POST',
+        data: { pincode: pincode },
+        url: '{{route("checkpincodeno")}}',
+         success: function (response) {
+                        console.log(response); 
+                        if (response.results) {
+                            $('#result').html('Pincode is available for delivery.');
+                        } else {
+                            $('#result').html('Pincode is not available for delivery.');
+                        }
+        },
+         error: function (xhr, status, error) {
                         $('#result').html('An error occurred while checking the pincode. Please try again later.');
                     }
-                });
-            });
+  });
+});
         });
-</script> -->
+</script>

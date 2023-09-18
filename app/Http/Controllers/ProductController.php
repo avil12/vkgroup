@@ -20,6 +20,7 @@ use App\Services\ProductService;
 use App\Services\ProductTaxService;
 use App\Services\ProductFlashDealService;
 use App\Services\ProductStockService;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -546,26 +547,15 @@ class ProductController extends Controller
     }
 
 
-     public function checkPincode(Request $request)
+    public function checkPincode(Request $request)
     {
-        $pincode = $request->input('pincode');
+            $pincode = $request->input('pincode');
+            $results = DB::table('pincode')
+            ->where('pincode', $pincode)
+            ->where('status', 1)
+            ->exists();
 
-        // Perform your pincode availability check logic here
-        // For example, check the pincode against your database
-        $available = $this->checkPincodeAvailability($pincode);
-
-        return response()->json(['available' => $available]);
+            return response()->json(['results' => $results]);
     }
 
-    private function checkPincodeAvailability($pincode)
-    {
-        // Implement your pincode availability check logic here
-        // Return true if available, false if not
-        // For example, you can check against a database table
-        // Replace this with your actual logic
-
-        $availablePincode = '12345'; // Replace with an example available pincode
-
-        return $pincode === $availablePincode;
-    }
 }

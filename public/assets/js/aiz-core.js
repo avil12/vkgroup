@@ -2039,28 +2039,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
         }
     };
 
-     $('#checkAvailability').click(function () {
-                var pincode = $('#pincode').val();
-                
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': AIZ.data.csrf,
-                    },
-                    type: 'POST',
-                    url: '{{ route("checkPincode") }}',
-                    data: {pincode: pincode},
-                    success: function (response) {
-                        if (response.available) {
-                            $('#result').html('Pincode is available for delivery.');
-                        } else {
-                            $('#result').html('Pincode is not available for delivery.');
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        $('#result').html('An error occurred while checking the pincode. Please try again later.');
-                    }
-                });
-            });
+     
 
     
 

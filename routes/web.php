@@ -366,7 +366,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 
    
-
+    
    
 });
 
@@ -464,6 +464,6 @@ Route::controller(PageController::class)->group(function () {
 });
 
 
-Route::post('/check-pincode', [ProductController::class, 'checkPincode'])->name('checkPincode');
+Route::post('/product', [ProductController::class, 'checkPincode'])->name('checkpincodeno');
 
 
