@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-xxl-8 col-xl-10 mx-auto">
-                    <form class="form-default" data-toggle="validator" action="{{ route('checkout.store_shipping_infostore') }}" role="form" method="POST">
+                    <form class="form-default" id="delivery-form" data-toggle="validator" action="{{ route('checkout.store_shipping_infostore') }}" role="form" method="POST">
                         @csrf
                         @if(Auth::check())
                             <div class="border bg-white p-4 mb-4">
@@ -75,7 +75,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <span class="fs-14 text-secondary col-3">{{ translate('Postal Code') }}</span>
-                                                            <span class="fs-14 text-dark fw-500 ml-2 col">{{ $address->postal_code }}</span>
+                                                            <span name="postal_code" class="fs-14 text-dark fw-500 ml-2 col">{{ $address->postal_code }}</span>
                                                         </div>
                                                         <div class="row">
                                                             <span class="fs-14 text-secondary col-3">{{ translate('City') }}</span>
@@ -118,12 +118,14 @@
                                     <div class="col-md-6 text-center text-md-left order-1 order-md-0">
                                         <a href="{{ route('home') }}" class="btn btn-link fs-14 fw-700 px-0">
                                             <i class="las la-arrow-left fs-16"></i>
+
                                             {{ translate('Return to shop')}}
                                         </a>
+                                        <div id="result"></div>
                                     </div>
                                     <!-- Continue to Delivery Info -->
                                     <div class="col-md-6 text-center text-md-right">
-                                        <button type="submit" class="btn btn-primary fs-14 fw-700 rounded-0 px-4">{{ translate('Continue to Delivery Info')}}</a>
+                                        <button type="submit"  id="check-btn" class="btn btn-primary fs-14 fw-700 rounded-0 px-4">{{ translate('Continue to Delivery Info')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -133,9 +135,28 @@
             </div>
         </div>
     </section>
+
+<script>
+       
+        $('#check-btn').click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '{{route("checkout.store_shipping_infostore")}}',
+                data: $('#delivery-form').serialize(),
+                success: function (response) {
+                    $('#result').html(response.message);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+</script>
+
 @endsection
 
 @section('modal')
     <!-- Address Modal -->
     @include('frontend.partials.address_modal')
 @endsection
+

@@ -17,6 +17,7 @@ use App\Utility\PayhereUtility;
 use App\Utility\NotificationUtility;
 use Session;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -139,8 +140,34 @@ class CheckoutController extends Controller
             })->orWhere('free_shipping', 1);
             $carrier_list = $carrier_query->get();
         }
+
+        $selectedAddressId = $request->input('address_id');
+        $selectedAddress = Address::find($selectedAddressId);
+
+        if (!$selectedAddress) {
+            return response()->json(['message' => 'Invalid address selected.']);
+        }
+
+        // Get the postal code from the selected address
+        $addressPostalCode = $selectedAddress->postal_code;
+
+        $databasePincode = $this->getDatabasePincode();
+
         
-        return view('frontend.delivery_info', compact('carts','carrier_list'));
+        if (in_array($addressPostalCode, $databasePincode)) {
+
+           return view('frontend.delivery_info', compact('carts','carrier_list'));
+        } else {
+           return response()->json(['message' => 'Delivery is not available.']);
+        }
+
+    }
+
+    // Replace this method with your logic to get the database PIN code
+    private function getDatabasePincode()
+    {
+        
+        return DB::table('pincode')->pluck('pincode')->toArray();
     }
 
     public function store_delivery_info(Request $request)
