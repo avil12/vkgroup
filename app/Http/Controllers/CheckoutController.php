@@ -155,10 +155,9 @@ class CheckoutController extends Controller
 
         
         if (in_array($addressPostalCode, $databasePincode)) {
-
            return view('frontend.delivery_info', compact('carts','carrier_list'));
         } else {
-           return response()->json(['message' => 'Delivery is not available.']);
+             return redirect()->back()->with('error', 'Delivery is not available for this postal code.');
         }
 
     }

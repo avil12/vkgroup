@@ -52,6 +52,14 @@
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-xxl-8 col-xl-10 mx-auto">
+                     <!-- <div id="result"></div> -->
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+
                     <form class="form-default" id="delivery-form" data-toggle="validator" action="{{ route('checkout.store_shipping_infostore') }}" role="form" method="POST">
                         @csrf
                         @if(Auth::check())
@@ -121,7 +129,7 @@
 
                                             {{ translate('Return to shop')}}
                                         </a>
-                                        <div id="result"></div>
+                                       
                                     </div>
                                     <!-- Continue to Delivery Info -->
                                     <div class="col-md-6 text-center text-md-right">
