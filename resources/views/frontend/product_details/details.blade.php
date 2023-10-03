@@ -351,7 +351,7 @@
                 <button class="btn btn-primary" id="checkPincode"  data-mdb-ripple-color="dark">
                     Apply
                 </button>
-               
+                <button class="changebtn" id="change-button">Change</button>
             </div>
         </div> 
     <div id="result"></div>
@@ -595,43 +595,64 @@
 
 </div>
 
-<script>
-        $(document).ready(function () {
-            $("#checkPincode").click(function(event){
-    event.preventDefault(); // Prevent the form from submitting
-
-    var pincode = $("#pincode").val();
+<script type="text/javascript">
     
-    if (pincode === "") {
-        $('#result').html('Please enter a delivery pincode');
-        return false;
-    }
+$(document).ready(function () {
+        $("#checkPincode").click(function(event){
+                 event.preventDefault(); // Prevent the form from submitting
 
-    // Check if pincode is a valid number
-    if (isNaN(pincode)) {
-         $('#result').html('Pincode should be a numeric value.');
-         return false;
-    }
+                var pincode = $("#pincode").val();
 
-    $.ajax({
-        headers: {
-                        'X-CSRF-TOKEN': AIZ.data.csrf,
-                    },
-        type: 'POST',
-        data: { pincode: pincode },
-        url: '{{route("checkpincodeno")}}',
-         success: function (response) {
-                        console.log(response); 
-                        if (response.results) {
-                            $('#result').html('Pincode is available for delivery.');
-                        } else {
-                            $('#result').html('Pincode is not available for delivery.');
-                        }
-        },
-         error: function (xhr, status, error) {
-                        $('#result').html('An error occurred while checking the pincode. Please try again later.');
-                    }
-  });
-});
+                const changeButton = document.getElementById('change-button');
+                
+                if (pincode === "") {
+                    $('#result').html('Please enter a delivery pincode');
+                    return false;
+                }
+
+                // Check if pincode is a valid number
+                if (isNaN(pincode) || pincode.length !== 6) {
+                   $('#result').html('Pincode should be a 6-digit numeric value.');
+                   changeButton.style.display = 'block';
+                   return false;
+               }
+
+               $(document).on('click', '#change-button', function () {
+                        $("#pincode").val(""); // Clear the input field
+                        $(this).hide(); // Hide the change button
+                    });
+
+           $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': AIZ.data.csrf,
+            },
+            type: 'POST',
+            data: { pincode: pincode },
+            url: '{{route("checkpincodeno")}}',
+            success: function (response) {
+                console.log(response); 
+                if (response.results) {
+                    $('#result').html('Pincode is available for delivery.');
+                    changeButton.style.display = 'block';
+
+
+                } else {
+                    $('#result').html('Pincode is not available for delivery.');
+                    changeButton.style.display = 'block';
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#result').html('An error occurred while checking the pincode. Please try again later.');
+                changeButton.style.display = 'none';
+            }
         });
+
+        console.log("Button Click Event Attached!");
+
+       });
+
+       
+});
+
+
 </script>

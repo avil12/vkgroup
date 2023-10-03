@@ -52,12 +52,17 @@
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-xxl-8 col-xl-10 mx-auto">
-                     <!-- <div id="result"></div> -->
-                    @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+                    <div id="result"></div>
+                  <!--  @if(request()->has('error'))
+                    <script>
+                        $(document).ready(function(){
+                            var errorMessage = "{{ request('error') }}";
+                            alert(errorMessage); // This will display the error message as a browser alert
+                            // You can also use other methods to display the error message as a popup/modal here
+                             console.log('Error message displayed:', errorMessage); 
+                        });
+                    </script>
+                @endif -->
 
 
                     <form class="form-default" id="delivery-form" data-toggle="validator" action="{{ route('checkout.store_shipping_infostore') }}" role="form" method="POST">
@@ -147,12 +152,18 @@
 <script>
        
         $('#check-btn').click(function () {
+              event.preventDefault(); 
             $.ajax({
                 type: 'POST',
                 url: '{{route("checkout.store_shipping_infostore")}}',
                 data: $('#delivery-form').serialize(),
+                dataType: 'json',
                 success: function (response) {
-                    $('#result').html(response.message);
+                     if (response.success) {
+                           $('#delivery-form').submit();
+                        } else {
+                             $('#result').text(response.message);
+                        }
                 },
                 error: function (error) {
                     console.log(error);

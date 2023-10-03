@@ -155,9 +155,15 @@ class CheckoutController extends Controller
 
         
         if (in_array($addressPostalCode, $databasePincode)) {
-           return view('frontend.delivery_info', compact('carts','carrier_list'));
+          if ($request->wantsJson()) {
+        // Return JSON response for AJAX requests
+        return response()->json(['success' => true, 'data' => compact('carts', 'carrier_list')]);
+    } else {
+        // Return the view for non-AJAX requests
+        return view('frontend.delivery_info', compact('carts', 'carrier_list'));
+    }
         } else {
-             return redirect()->back()->with('error', 'Delivery is not available for this postal code.');
+           return response()->json(['success' => false, 'message' => 'Delivery is not available for this postal code.']);
         }
 
     }
