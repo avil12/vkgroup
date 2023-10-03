@@ -52,7 +52,7 @@
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">
                 <div class="col-xxl-8 col-xl-10 mx-auto">
-                    <div id="result"></div>
+                    <div id="result" class="alert alert-danger"></div>
                   <!--  @if(request()->has('error'))
                     <script>
                         $(document).ready(function(){
@@ -153,6 +153,15 @@
        
         $('#check-btn').click(function () {
               event.preventDefault(); 
+              const resultbtn = document.getElementById('result');
+
+              function hideResultElement() {
+                    resultbtn.style.display = 'none'; // You can also use .hide() if you don't want a fade effect
+                }
+
+                // Trigger the hideResultElement function after 5 seconds (5000 milliseconds)
+           // 5000 milliseconds = 5 seconds
+
             $.ajax({
                 type: 'POST',
                 url: '{{route("checkout.store_shipping_infostore")}}',
@@ -162,7 +171,9 @@
                      if (response.success) {
                            $('#delivery-form').submit();
                         } else {
-                             $('#result').text(response.message);
+                            resultbtn.style.display = 'block';
+                            $('#result').text(response.message);
+                            setTimeout(hideResultElement, 5000);
                         }
                 },
                 error: function (error) {

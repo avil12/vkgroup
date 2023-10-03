@@ -38,6 +38,7 @@
     border-color: #f3af3d;
     border-radius: 5px;
     color: #fff;
+    margin-top: 0px;
 }
 
 
@@ -534,6 +535,12 @@ padding-right: 200px;
 }
 
 #result{
+    padding-top: 10px;
+    font-size: 14px;
+    display: none;
+}
+
+#result1{
     padding-top: 10px;
     font-size: 14px;
 }

@@ -323,42 +323,7 @@
                 @endif
             </div>
 
-<hr style="margin-top:9px;margin-bottom: 8px;border: 1px solid #ededf2;">
 
-<div class="row no-gutters mb-2">
-    <div class="col-lg-12">
-        <h3 class="fs-16 fw-700">Delivery & Assembly</h3>
-    </div>
-    
-    
-    <div class="col-sm-2 mt-2 mb-2">
-
-        <div class="text-secondary fs-14 fw-500 mt-2 ">
-         Delivering to
-     </div>
- </div>
- <div class="col-sm-10 mt-2 mb-2">
-   
-        <div class="d-flex ">
-            <div class="input-group w-auto">
-                <input
-                type="text"
-                class="form-control"
-                placeholder="Enter Pincode"
-                id="pincode"
-                name="pincode"
-                / style="margin-right: 20px;">
-                <button class="btn btn-primary" id="checkPincode"  data-mdb-ripple-color="dark">
-                    Apply
-                </button>
-                <button class="changebtn" id="change-button">Change</button>
-            </div>
-        </div> 
-    <div id="result"></div>
-</div>
-
-
-</div>
 
 <hr style="margin-top:9px;margin-bottom: 8px;border: 1px solid #ededf2;">
 
@@ -449,6 +414,49 @@
 
         </form>
     @endif
+
+<hr style="margin-top:9px;margin-bottom: 8px;border: 1px solid #ededf2;">
+
+<div class="row no-gutters mb-2">
+    <div class="col-lg-12">
+        <h3 class="fs-16 fw-700">Delivery & Assembly</h3>
+    </div>
+    
+    
+    <div class="col-sm-2 mt-2 mb-2">
+
+        <div class="text-secondary fs-14 fw-500 mt-2 ">
+         Delivering to
+     </div>
+ </div>
+ <div class="col-sm-6 mt-2 mb-2">
+    <form method="POST">
+        <div class="d-flex ">
+            <div class="input-group w-auto">
+                <input
+                type="text"
+                class="form-control"
+                placeholder="Enter Pincode"
+                id="pincode"
+                name="pincode"
+                / style="margin-right: 20px;">
+                <button class="btn btn-primary" id="checkPincode"  data-mdb-ripple-color="dark">
+                    Apply
+                </button>
+                
+            </div>
+        </div>
+    </form>
+    <div id="result1"></div>
+</div>
+  <div class="col-sm-4 mt-2 mb-2">
+    <div class="d-flex ">
+    <button class="changebtn"  id="change-button">Clear</button>
+</div>
+</div>
+</div>
+
+
     
      <hr style="margin-top:9px;margin-bottom: 8px;border: 1px solid #ededf2;">
 
@@ -606,21 +614,19 @@ $(document).ready(function () {
                 const changeButton = document.getElementById('change-button');
                 
                 if (pincode === "") {
-                    $('#result').html('Please enter a delivery pincode');
+                    $('#result1').html('Please enter a delivery pincode');
                     return false;
                 }
 
                 // Check if pincode is a valid number
                 if (isNaN(pincode) || pincode.length !== 6) {
-                   $('#result').html('Pincode should be a 6-digit numeric value.');
+                   $('#result1').html('Pincode should be a 6-digit numeric value.');
                    changeButton.style.display = 'block';
                    return false;
                }
 
-               $(document).on('click', '#change-button', function () {
-                        $("#pincode").val(""); // Clear the input field
-                        $(this).hide(); // Hide the change button
-                    });
+               
+
 
            $.ajax({
             headers: {
@@ -632,22 +638,25 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response); 
                 if (response.results) {
-                    $('#result').html('Pincode is available for delivery.');
+                    $('#result1').html('Pincode is available for delivery.');
                     changeButton.style.display = 'block';
-
-
                 } else {
-                    $('#result').html('Pincode is not available for delivery.');
+                    $('#result1').html('Pincode is not available for delivery.');
                     changeButton.style.display = 'block';
                 }
             },
             error: function (xhr, status, error) {
-                $('#result').html('An error occurred while checking the pincode. Please try again later.');
-                changeButton.style.display = 'none';
+                $('#result1').html('An error occurred while checking the pincode. Please try again later.');
+               changeButton.style.display = 'block';
             }
         });
 
-        console.log("Button Click Event Attached!");
+            $(document).ready(function() {
+                $(document).on('click', '#change-button', function() {
+                    $("#pincode").val("");
+                    $("#result1").empty();
+                });
+            });
 
        });
 
