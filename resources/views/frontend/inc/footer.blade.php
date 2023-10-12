@@ -101,7 +101,7 @@ padding: 49px 0px 30px 0px;">
 @php
     $col_values = ((get_setting('vendor_system_activation') == 1) || addon_is_activated('delivery_boy')) ? "col-lg-3 col-md-6 col-sm-6" : "col-md-4 col-sm-6";
 @endphp
-<section class=" text-light footer-widget" style="background-color: #000000 !important;padding: 30px 0px 76px 0px;">
+<section class=" text-light footer-widget" style="background-color: #01273a !important;padding: 30px 0px 76px 0px;">
     <!-- footer widgets ========== [Accordion Fotter widgets are bellow from this]-->
     <div class="container d-none d-lg-block">
         <div class="row">
@@ -413,12 +413,12 @@ padding: 49px 0px 30px 0px;">
 </section>
 
 <!-- FOOTER -->
-<footer class="pt-1 pb-1" style="background-color:#000">
+<footer class="pt-1 pb-1 footcopyright" style="background-color:#fff">
     <div class="container">
-        <div class="row align-items-center py-3">
+        <div class="row align-items-center py-2">
             <!-- Copyright -->
             <div class="col-lg-6 order-1 order-lg-0">
-                <div class="text-center footcopyright text-lg-left fs-14" current-verison="{{get_setting("current_version")}}">
+            <div class="text-center footcopyright text-lg-left fs-14" current-verison="{{get_setting("current_version")}}">
                     {!! get_setting('frontend_copyright_text', null, App::getLocale()) !!}
                 </div>
             </div>

@@ -411,7 +411,7 @@ figure {
 }
 
 .footcopyright span{
-  color: #d4d3d3 !important;
+  color: #000 !important;
 }
 
 #scrollcol{
@@ -545,6 +545,15 @@ padding-right: 200px;
     font-size: 14px;
 }
 
+.website-popup .modal-content{
+    background-color: unset;
+}
+
+.website-popup .absolute-top-right {
+    position: absolute;
+    top: 0;
+    right: 136px;
+}
 
 @media only screen and (max-width: 1660px) {
 
@@ -853,6 +862,16 @@ padding-right: 200px;
 #heightbox {
     height: 261px;
     border-right: 1px solid #000 !important;
+}
+
+.website-popup .modal-content img{
+    width: 84% !important;
+}
+
+.website-popup .absolute-top-right {
+    position: absolute;
+    top: 0;
+    right: 27px;
 }
 
 }

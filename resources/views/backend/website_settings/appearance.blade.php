@@ -250,7 +250,7 @@
                             <label class="col-md-3 col-from-label">{{ translate('Popup content') }}</label>
                             <div class="col-md-8">
                                 <input type="hidden" name="types[]" value="website_popup_content">
-                                <textarea name="website_popup_content" rows="4" class="aiz-text-editor form-control" >{{ get_setting('website_popup_content') }}</textarea>
+                                <textarea name="website_popup_content" data-buttons='[["font", ["bold", "underline", "italic", "clear"]],["para", ["ul", "ol", "paragraph"]],["style", ["style"]],["color", ["color"]],["table", ["table"]],["insert", ["link", "picture", "video"]],["view", ["fullscreen", "codeview", "undo", "redo"]]]' rows="4" class="aiz-text-editor form-control" >{{ get_setting('website_popup_content') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
