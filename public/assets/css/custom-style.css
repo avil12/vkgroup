@@ -555,6 +555,67 @@ padding-right: 200px;
     right: 136px;
 }
 
+/* Bigwin application form */
+.bigwinform h3{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.bigwinform .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.bigwinform form {
+    display: grid;
+    gap: 10px;
+}
+
+.bigwinform label {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.bigwinform input[type="text"],
+input[type="email"],
+input[type="date"],
+textarea,
+select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.bigwinform button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.bigwinform button:hover {
+    background-color: #45a049;
+}
+
+.bigwinform{
+    padding: 60px 0px;
+}
+
+.checkboxflex .checklist{
+    margin-right: 9px;
+    margin-left: 10px;
+}
+
+
+
 @media only screen and (max-width: 1660px) {
 
 #topbarmenu {

@@ -159,7 +159,10 @@ Route::controller(HomeController::class)->group(function () {
 
     Route::get('/payment-failure','payfailure')->name('payfailure');
 
-   
+
+    //Bigwin Application form
+    Route::get('/application-form','showForm');
+    Route::post('/submit-form','submitForm')->name('submitForm');
 
 });
 

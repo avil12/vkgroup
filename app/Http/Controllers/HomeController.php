@@ -715,6 +715,44 @@ class HomeController extends Controller
         return view('frontend.inhouse_products', compact('products'));
     }
 
+    public function showForm()
+    {
+        return view('application-form');
+    }
+
+    public function submitForm(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'dob' => 'required|date',
+            'address' => 'required|string|max:255',
+            'mobile1' => 'required|string|max:15',
+            'mobile2' => 'required|string|max:15',
+            'email' => 'required|email|max:255',
+            'passport_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'valid_document' => 'required|array|min:1',
+            'valid_document.*' => 'required|in:aadhar_card,voter_id,other',
+            'upload_document' => 'required|file|mimes:pdf,docx',
+            'document_id' => 'required|string|max:255',
+            'nominee_name' => 'required|string|max:255',
+            'relationship' => 'required|string|max:255',
+            'nominee_address' => 'required|string|max:255',
+            'nominee_mobile1' => 'required|string|max:15',
+            'nominee_mobile2' => 'required|string|max:15',
+            'declaration' => 'required|accepted',
+        ]);
+
+        // Send the form data to the specified email
+        Mail::send('emails.application-form', ['data' => $validatedData], function ($message) {
+            $message->to('avilferrao7@gmail.com', 'Receiver Name')
+                ->subject('New Application Form Submitted');
+        });
+
+        // Redirect back with success message
+        return redirect('/application-form')->with('success', 'Form submitted successfully!');
+    }
+
     
 
 }
