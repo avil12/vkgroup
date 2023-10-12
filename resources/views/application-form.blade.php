@@ -9,7 +9,7 @@
     <form method="post" action="{{ route('submitForm') }}" enctype="multipart/form-data">
         @csrf
 
-        <label for="name">Name of Applicant (Full Name):</label><span>*</span>
+        <label for="name">Name of Applicant (Full Name):<span>*</span></label>
         <input type="text" id="name" class="form-control" name="name" required>
 
         <label for="dob">Date of Birth:</label><span>*</span>
