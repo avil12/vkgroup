@@ -6,12 +6,30 @@
     <h3><u>Big Win Application Form</u></h3>
     <h6>* indicates fields are required</h6>
 <div class="container">
+
+     @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- Display Error Message -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif 
+
     
     <form method="POST" action="{{ route('submitForm') }}" enctype="multipart/form-data">
         @csrf
 
         <label for="name">Name of Applicant (Full Name):<span>*</span></label>
-        <input type="text" id="name" class="form-control" name="name">
+        <input type="text" id="name" class="form-control"  name="name">
 
         <label for="dob">Date of Birth:<span>*</span></label>
         <input type="date" id="dob" class="form-control" name="dob" >

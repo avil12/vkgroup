@@ -727,6 +727,7 @@ class HomeController extends Controller
 
     public function submitForm(Request $request)
     {
+         try {
         $validatedData = $request->validate([
         // ... your validation rules here ...
             'name' => 'required|string|max:255',
@@ -748,15 +749,21 @@ class HomeController extends Controller
             'declaration' => 'required|accepted',
     ]);
 
+        dd($validatedData);
+
         $passportPhoto = $request->file('passport_photo');
         $validDocument = $request->file('upload_document');
 
-        $passportPhotoPath = $passportPhoto->store('photos'); // 'photos' is the storage directory for passport photos
-        $validDocumentPath = $validDocument->store('documents'); // 'documents' is the storage directory for valid documents
+       $passportPhotoPath = $passportPhoto->store('photos', 'public');
+       $validDocumentPath = $validDocument->store('documents', 'public');
 
-        Mail::to('avil@komquest.com')->send(new Appform(['data' => $validatedData],$passportPhotoPath, $validDocumentPath));
+        Mail::to('avil@komquest.com')->send(new Appform($validatedData,$passportPhotoPath, $validDocumentPath));
 
-        return redirect('application-form');
+         return redirect('application-form')->with('success', 'Form submitted successfully!');
+         } catch (\Exception $e) {
+        // Handle the exception (e.g., log the error)
+       return redirect('application-form')->withErrors([$e->getMessage()]);
+    }
 
     }
 
