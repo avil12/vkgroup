@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Hash;
-use Mail;
+// use Mail;
 use Cache;
 use Cookie;
 use App\Models\Page;
@@ -29,6 +29,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Mail\SecondEmailVerifyMailManager;
+use Illuminate\Support\Facades\Mail;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use App\Mail\Appform;
 
 class HomeController extends Controller
 {
@@ -718,12 +722,13 @@ class HomeController extends Controller
     public function showForm()
     {
         return view('application-form');
+
     }
 
     public function submitForm(Request $request)
     {
-        // Validate the form data
         $validatedData = $request->validate([
+        // ... your validation rules here ...
             'name' => 'required|string|max:255',
             'dob' => 'required|date',
             'address' => 'required|string|max:255',
@@ -731,9 +736,9 @@ class HomeController extends Controller
             'mobile2' => 'required|string|max:15',
             'email' => 'required|email|max:255',
             'passport_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
-            'valid_document' => 'required|array|min:1',
-            'valid_document.*' => 'required|in:aadhar_card,voter_id,other',
-            'upload_document' => 'required|file|mimes:pdf,docx',
+            'valid_document' => 'required',
+            'valid_document.*' => 'required',
+            'upload_document' => 'required|file|mimes:pdf,docx,txt',
             'document_id' => 'required|string|max:255',
             'nominee_name' => 'required|string|max:255',
             'relationship' => 'required|string|max:255',
@@ -741,18 +746,19 @@ class HomeController extends Controller
             'nominee_mobile1' => 'required|string|max:15',
             'nominee_mobile2' => 'required|string|max:15',
             'declaration' => 'required|accepted',
-        ]);
+    ]);
 
-        // Send the form data to the specified email
-        Mail::send('emails.application-form', ['data' => $validatedData], function ($message) {
-            $message->to('avilferrao7@gmail.com', 'Receiver Name')
-                ->subject('New Application Form Submitted');
-        });
+        $passportPhoto = $request->file('passport_photo');
+        $validDocument = $request->file('upload_document');
 
-        // Redirect back with success message
-        return redirect('/application-form')->with('success', 'Form submitted successfully!');
+        $passportPhotoPath = $passportPhoto->store('photos'); // 'photos' is the storage directory for passport photos
+        $validDocumentPath = $validDocument->store('documents'); // 'documents' is the storage directory for valid documents
+
+        Mail::to('avil@komquest.com')->send(new Appform(['data' => $validatedData],$passportPhotoPath, $validDocumentPath));
+
+        return redirect('application-form');
+
     }
 
-    
-
 }
+
