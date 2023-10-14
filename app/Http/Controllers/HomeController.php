@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Mail;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use App\Mail\Appform;
+use App\Rules\DateOfBirth;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -728,13 +730,51 @@ class HomeController extends Controller
     public function submitForm(Request $request)
     {
          try {
+            $customErrorMessages = [
+            'name.required' => 'The name field is required.',
+           'name.alpha' => 'The name field should only contain alphabetic characters.',
+           'name.max' => 'The name field should not exceed :max characters.',
+            'dob.required' => 'The date of birth field is required.',
+            'dob.date' => 'Invalid date of birth format.',
+            'dob.before_or_equal' => 'The date of birth must be in the past.',
+            'address.required'=> 'The address filed is required',
+            'address.max'=> 'The address field should not exceed :max characters.',
+            'mobile1.required' => 'Mobile 1 field is required.',
+            'mobile1.regex' => 'Mobile 1 must be a valid 10-digit phone number starting with 6, 7, 8, or 9.',
+            'mobile2.required' => 'Mobile 2 field is required.',
+            'mobile2.regex' => 'Mobile 2 must be a valid 10-digit phone number starting with 6, 7, 8, or 9.',
+            'email.required' => 'Email field is required.',
+            'email.email' => 'Invalid email format.',
+            'email.max' => 'Email should not exceed :max characters.',
+            'passport_photo.required' => 'Passport photo is required.',
+            'passport_photo.image' => 'Passport photo must be an image file.',
+            'passport_photo.mimes' => 'Passport photo must be in jpeg, png, jpg, or gif format.',
+            'valid_document.required' => 'Valid document field is required.',
+            'valid_document.*.required' => 'Each valid document selection is required.',
+            'upload_document.required' => 'Upload document is required.',
+            'upload_document.file' => 'Upload document must be a file.',
+            'upload_document.mimes' => 'Upload document must be in pdf, docx, or txt format.',
+            'document_id.required' => 'Document ID field is required.',
+            'document_id.max' => 'Document ID should not exceed :max characters.',
+            'nominee_name.required' => 'Nominee name field is required.',
+            'nominee_name.max' => 'Nominee name should not exceed :max characters.',
+            'relationship.required' => 'Relationship field is required.',
+            'relationship.max' => 'Relationship should not exceed :max characters.',
+            'nominee_address.required' => 'Nominee address field is required.',
+            'nominee_address.max' => 'Nominee address should not exceed :max characters.',
+            'nominee_mobile1.required' => 'Nominee mobile 1 field is required.',
+            'nominee_mobile1.regex' => 'Nominee mobile 1 must be a valid 10-digit phone number starting with 6, 7, 8, or 9.',
+            'nominee_mobile2.regex' => 'Nominee mobile 2 must be a valid 10-digit phone number starting with 6, 7, 8, or 9.',
+            'declaration.required' => 'Declaration field is required.',
+            'declaration.accepted' => 'You must accept the declaration to submit the form.',
+        ];
+
         $validatedData = $request->validate([
-        // ... your validation rules here ...
-            'name' => 'required|string|max:255',
-            'dob' => 'required|date',
+            'name' => 'required|string|alpha|max:255',
+            'dob' => ['required', 'date', 'before_or_equal:today'],
             'address' => 'required|string|max:255',
-            'mobile1' => 'required|string|max:15',
-            'mobile2' => 'required|string|max:15',
+            'mobile1' => 'required|regex:/^[6-9]\d{9}$/',
+            'mobile2' => 'required|regex:/^[6-9]\d{9}$/',
             'email' => 'required|email|max:255',
             'passport_photo' => 'required|image|mimes:jpeg,png,jpg,gif',
             'valid_document' => 'required',
@@ -744,12 +784,11 @@ class HomeController extends Controller
             'nominee_name' => 'required|string|max:255',
             'relationship' => 'required|string|max:255',
             'nominee_address' => 'required|string|max:255',
-            'nominee_mobile1' => 'required|string|max:15',
-            'nominee_mobile2' => 'required|string|max:15',
+            'nominee_mobile1' => 'required|regex:/^[6-9]\d{9}$/',
+            'nominee_mobile2' => 'regex:/^[6-9]\d{9}$/',
             'declaration' => 'required|accepted',
-    ]);
+    ], $customErrorMessages);
 
-        dd($validatedData);
 
         $passportPhoto = $request->file('passport_photo');
         $validDocument = $request->file('upload_document');
@@ -757,13 +796,18 @@ class HomeController extends Controller
        $passportPhotoPath = $passportPhoto->store('photos', 'public');
        $validDocumentPath = $validDocument->store('documents', 'public');
 
+
+
         Mail::to('avil@komquest.com')->send(new Appform($validatedData,$passportPhotoPath, $validDocumentPath));
 
          return redirect('application-form')->with('success', 'Form submitted successfully!');
-         } catch (\Exception $e) {
-        // Handle the exception (e.g., log the error)
-       return redirect('application-form')->withErrors([$e->getMessage()]);
-    }
+    } catch (ValidationException $e) {
+    // Validation exception occurred, you can get the validation errors and redirect back
+    return redirect('application-form')->withErrors($e->errors())->withInput();
+} catch (\Exception $e) {
+    // Handle other exceptions (e.g., log the error)
+    return redirect('application-form')->with('error', 'Failed to submit form. Please try again later.');
+}
 
     }
 
