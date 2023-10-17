@@ -650,6 +650,11 @@ select {
     padding: .375rem .75rem;
 }
 
+.borderline{
+    border: 1px solid red;
+    margin-bottom: 12px;
+}
+
 
 @media only screen and (max-width: 1660px) {
 

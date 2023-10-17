@@ -11,3 +11,7 @@
 <p>Nominee Address:-{{ $validatedData['nominee_address'] }}</p>
 <p>Nominee Mobile 1:-{{ $validatedData['nominee_mobile1'] }}</p>
 <p>Nominee Mobile 2:-{{ $validatedData['nominee_mobile2'] }}</p>
+<p>-----------------------------------------</p>
+<p>For Office Use:</p>
+<p>Executive Name:</p>
+<p>Executive Mobile No: +917996199666 / 7996399666</p>

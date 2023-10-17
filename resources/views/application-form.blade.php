@@ -83,6 +83,13 @@
         <div class="declarationcss">
         <input type="checkbox"  id="declaration" class="declcheckbox" name="declaration" required><p>I  Here by declare that the details mentioned in the form and the valid document submitted are correct to the best of my knowledge and belief. I bear the responsibility of any error or mistake in the data if occur in the future.</p>
         </div>
+        <div class="borderline"></div>
+        <h6>FOR OFFICE USE:</h6>
+        <label for="name">Executive Name:</label>
+        <input type="text" id="exename" class="form-control"  name="exename" readonly>
+        <label for="mobile1">Executive Mobile NO:</label>
+        <input type="text" id="exemobileno" value="+917996199666 / 7996399666" class="form-control" name="exemobileno" readonly>
+
         <button type="submit">Submit</button>
     </form>
 </div>
